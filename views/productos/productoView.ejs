@@ -1,0 +1,135 @@
+<!-- Producto -->
+<div class="container">
+    <div class="card producto-card">
+        <h3>
+            <%= producto.nombre %>
+        </h3>
+        <img src="<%= producto.urlFotoProducto %>" alt="Imagen del producto" class="producto-imagen">
+
+        <div class="producto-detalles">
+            <p><strong>Precio:</strong>
+                <span id="precio"><%= producto.precio %></span> ARS
+            </p>
+            <p><strong>Stock:</strong>
+                <%= producto.stock %>
+            </p>
+            <p><strong>Jugadores:</strong>
+                <%= producto.cantidadJugadoresMinimo %> - <%= producto.cantidadJugadoresMaximo %>
+            </p>
+            <p><strong>Duración:</strong>
+                <%= producto.duracionPartida %> minutos
+            </p>
+            <div>
+                <p class="font-weight-bold mb-1"><strong>Descripción:</strong></p>
+                <p>
+                    <%= producto.descripcion %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Estrellas -->
+<% if (usuario.nombre) { %>
+    <h3>Valora el producto</h3>
+    <div class="stars"> 
+        <input type="radio" id="star5" name="ratingUsuario" value="5" <%= estrellasUsuario === 5 ? 'checked' : '' %> ><label for="star5">★</label> 
+        <input type="radio" id="star4" name="ratingUsuario" value="4" <%= estrellasUsuario === 4 ? 'checked' : '' %> ><label for="star4">★</label> 
+        <input type="radio" id="star3" name="ratingUsuario" value="3" <%= estrellasUsuario === 3 ? 'checked' : '' %> ><label for="star3">★</label> 
+        <input type="radio" id="star2" name="ratingUsuario" value="2" <%= estrellasUsuario === 2 ? 'checked' : '' %> ><label for="star2">★</label> 
+        <input type="radio" id="star1" name="ratingUsuario" value="1" <%= estrellasUsuario === 1 ? 'checked' : '' %> ><label for="star1">★</label>
+    </div>
+<% } %>
+
+
+<h3>Valoración de la gente</h3>
+<div class="stars"> 
+    <input type="radio" id="star5" name="ratingPublico" value="5" <%= estrellasPublico === 5 ? 'checked' : '' %> ><label for="star5">★</label> 
+    <input type="radio" id="star4" name="ratingPublico" value="4" <%= estrellasPublico === 4 ? 'checked' : '' %> ><label for="star4">★</label> 
+    <input type="radio" id="star3" name="ratingPublico" value="3" <%= estrellasPublico === 3 ? 'checked' : '' %> ><label for="star3">★</label> 
+    <input type="radio" id="star2" name="ratingPublico" value="2" <%= estrellasPublico === 2 ? 'checked' : '' %> ><label for="star2">★</label> 
+    <input type="radio" id="star1" name="ratingPublico" value="1" <%= estrellasPublico === 1 ? 'checked' : '' %> ><label for="star1">★</label>
+</div>
+
+
+<!-- Compra -->
+<% if (usuario.nombre) { %>
+    <p><h2>Comprar producto</h2></p>
+
+    <label for="cantidadCompra"><h4>Cantidad: </h4></label>
+    <input type="number" id="cantidadCompra" name="cantidadCompra" required min="1" value="0">
+
+    <h4>Precio: <span id="precioCompra">0</span> ARS </h4>
+
+    <button onclick="comprar()">Comprar</button>
+<% } %>
+
+<!-- Comentarios -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Comentarios</h2>
+
+            <!-- Opción para escribir un comentario propio -->
+            <% if (usuario.nombre) { %>
+                <form id="comment-form">
+                    <div class="form-group">
+                        <textarea class="form-control" id="comentario" rows="3" placeholder="Dinos lo que piensas del producto"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            <% } else { %>
+                <p>Inicia sesión para poder dejar comentarios</p>
+            <% } %>
+
+            <!-- Lista de Comentarios -->
+            <div class="mt-4">
+                <ul id="listaComentarios" class="list-group">
+
+                    <!-- Comentario padre -->
+                    <% comentarios.forEach(comentario => { %> 
+                        <li class="list-group-item">
+                            
+                            <img src="<%= comentario.urlFotoPerfil %>" class="rounded-circle" style="width: 40px; height: 40px;"> 
+                            <strong><%= comentario.nombre %>:</strong> (<%= comentario.fecha_creacion %>) <br>
+                            <%= comentario.texto %>
+
+                            <!-- Opción para escribir un subcomentario --> 
+                            <% if (usuario.nombre) { %> 
+                                <form id="subcomment-form" class="subcomment-form mt-2" comentarioPadreId = "<%= comentario.id %>"> 
+                                    <div class="form-group"> 
+                                        <textarea id="subcomentario" class="form-control" rows="2" placeholder="Escribe un subcomentario..."></textarea> 
+                                    </div> 
+                                    <button type="submit" class="btn btn-secondary btn-sm">Enviar</button> 
+                                </form> 
+                            <% } %> 
+
+                        </li>
+
+                        <!-- Comentario hijo -->
+                        <ul id="listaSubcomentarios-<%= comentario.id %>">
+
+                            <% subcomentarios
+                            .filter(subcomentario => subcomentario.id_comentario_padre == comentario.id)
+                            .sort((a, b) => new Date(a.fecha_creacion) - new Date(b.fecha_creacion))
+                            .forEach(subcomentario => { %>  
+                                    <li class="subcomentario"> 
+                                        <img src="<%= subcomentario.urlFotoPerfil %>" class="rounded-circle" style="width: 30px; height: 30px;"> 
+                                        <strong><%= subcomentario.nombre %>:</strong> (<%= subcomentario.fecha_creacion %>) <br> 
+                                        <%= subcomentario.texto %> 
+                                    </li>  
+                            <% }); %>
+
+                        </ul>
+
+                    <% }); %>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/css/producto.css">
+<script src="/js/producto-cliente.js"></script>

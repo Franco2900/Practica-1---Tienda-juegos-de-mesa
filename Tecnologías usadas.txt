@@ -1,0 +1,3 @@
+Base de datos: SQL - XAMPP
+Backend: NodeJS
+Frontend: EJS - Bootstrap

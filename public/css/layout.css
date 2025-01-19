@@ -1,0 +1,103 @@
+/* Etiquetas */
+
+html,
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('/images/fondo.jfif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+nav {
+    background-color: #af3737;
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    float: left;
+    position: relative;
+    z-index: 2;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #635353;
+}
+
+nav ul li .dropdown-menu {
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 3;
+}
+
+nav ul li .dropdown-item {
+    color: #000000;
+}
+
+nav ul li .dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Clases */
+
+.content {
+    background-color: yellow;
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.nav-item p-2 {
+    padding: .5rem !important;
+}
+
+.nav-item rounded {
+    border-radius: .25rem !important;
+}
+
+.dinero-item {
+    display: flex;
+    align-items: center;
+    background-color: #343a40;
+    color: #28a745;
+    padding: .5rem;
+    border-radius: .25rem;
+}
+
+.perfil-img {
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,66 @@
+.producto-card {
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.producto-card h3 {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+}
+
+.producto-imagen {
+    width: 100%;
+    height: auto;
+}
+
+.producto-detalles {
+    padding: 15px;
+}
+
+.producto-detalles p {
+    margin: 5px 0;
+}
+
+.list-group-item { 
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.subcomentario { 
+    margin-left: 20px; 
+    border-left: 1px solid #000000; 
+    padding-left: 10px; 
+}
+
+.stars 
+{ 
+    display: flex; 
+    direction: rtl; 
+    font-size: 2em; 
+} 
+
+.stars input 
+{ 
+    display: none; 
+} 
+
+.stars label 
+{ 
+    cursor: pointer; 
+    color: #ddd; 
+} 
+
+.stars input:checked ~ label, 
+.stars input:checked ~ label ~ label { color: #f5c518; } 
+
+h3
+{
+    margin-top: 15px; 
+    margin-bottom: 0; 
+    direction: rtl;
+}

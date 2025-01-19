@@ -1,0 +1,33 @@
+<div class="container profile text-center mt-5">
+
+    <h1>Mi perfil</h1>
+
+    <div class="position-relative d-inline-block"> 
+        <img id="fotoPerfil" src="<%= usuario.fotoPerfil %>"> 
+        <i class="bi bi-pencil-fill edit-icon" onclick="document.getElementById('formularioFotoPerfil').click();"></i> <!-- Al hacer click en el icono es como hacer click en el formulario -->
+        
+        <input type="file" id="formularioFotoPerfil" style="display: none;" accept="image/*" onchange="cambiarImagen(event)"> <!-- Solo se acepta imagenes o gif -->
+    </div>
+
+    <br>
+
+    <div class="name-edit-icon"> 
+        <h3 id="nombre">Nombre: <%= usuario.nombre %></h3> 
+        <i class="bi bi-pencil-fill" onclick="cambiarNombre()"></i> 
+    </div>
+
+    <br>
+
+    <div class="name-edit-icon"> 
+        <h3 id="contrasenia">Contraseña: <input type="password" value="<%= usuario.contrasenia %>" disabled></h3> 
+        <i class="bi bi-pencil-fill" onclick="cambiarContrasenia()"></i> 
+    </div>
+    
+    <p id="email">Email: <%= usuario.email %></p>
+
+</div>
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non voluptates, eaque, nam repudiandae facilis quod pariatur saepe cumque necessitatibus quas nemo commodi, animi maxime at mollitia modi soluta labore vero!
+
+<link rel="stylesheet" type="text/css" href="/css/perfil.css">
+<script src="/js/perfil-cliente.js"></script>

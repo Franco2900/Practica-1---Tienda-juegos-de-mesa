@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <% productos.forEach(producto => { %> 
+            <div class="col-md-4">
+                <a href="<%= producto.link %>" class="product-link">
+                    <div class="product">
+                        <h3><%= producto.nombre %></h3> 
+                        <img src="<%= producto.urlFotoProducto %>" alt="Imagen del producto">
+                        <p>Precio: <span class="precio"><%= producto.precio %></span> ARS</p>
+                        <p>Stock: <%= producto.stock %></p>
+                        <p>Jugadores: <%= producto.cantidadJugadoresMinimo %> - <%= producto.cantidadJugadoresMaximo %></p>
+                        <p>Duración: <%= producto.duracionPartida %> minutos</p>
+                    </div>
+                </a>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/css/compra.css">
+<script src="/js/compra-cliente.js"></script>

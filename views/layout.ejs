@@ -1,0 +1,112 @@
+<!DOCTYPE html <html lang="es">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= titulo %></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <!-- Bootstrap CSS -->
+    <link href="/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+    <link href="/bootstrapICONS/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+
+        <ul class="navbar-nav me-auto">
+
+            <li class="nav-item">
+                <a class="nav-link nav-icon-text" href="/">
+                    <i class="bi bi-house"></i> Inicio
+                </a>
+            </li>
+
+            <% if (usuario.nombre) { %>
+
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Productos </a> 
+                    <ul class="dropdown-menu" aria-labelledby="productosDropdown"> 
+                        <% if (usuario.rol == 'admin' ) { %>
+                        <li>
+                            <a class="dropdown-item" href="/productos/venta">Venta</a>
+                        </li>
+                        <% } %>
+                        <li>
+                            <a class="dropdown-item" href="/productos/compra">Compra</a>
+                        </li> 
+                    </ul> 
+                </li>
+
+            <% } else { %>
+            
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Productos </a> 
+                    <ul class="dropdown-menu" aria-labelledby="productosDropdown"> 
+                        <li>
+                            <a class="dropdown-item" href="/productos/compra">Compra</a>
+                        </li> 
+                    </ul> 
+                </li>
+
+            <% } %>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/contacto">Contacto</a>
+            </li>
+
+            <% if (usuario.nombre) { %>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Cerrar sesión</a>
+                </li>
+
+            <% } else { %>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Iniciar sesión</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Registrarse</a>
+                </li>
+
+            <% } %>
+        </ul>
+
+        <% if (usuario.nombre) { %>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dinero-item">
+                    <i class="bi bi-currency-dollar"></i>
+                    <%= usuario.dinero %>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/perfil">
+                        <%= usuario.nombre %>
+                    </a>
+                </li>
+
+                <li class="nav-item"> 
+                    <img src="<%= usuario.fotoPerfil %>" class="rounded-circle perfil-img"> 
+                </li>
+
+            </ul>
+        <% } %>
+
+    </nav>
+
+    <div class="content">
+        <%- include(body) %> <!-- Plantilla secundaria acá -->
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/bootstrapJS/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
